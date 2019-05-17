@@ -32,6 +32,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/sessions' do
+    binding.pry
     puts params
 
     @user = User.find_by(email: params[:email], password: params[:password])
@@ -39,7 +40,7 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = @user.id
       redirect '/users/home'
     end
-    binding.pry
+
     redirect :'/users/home'
   end
 
